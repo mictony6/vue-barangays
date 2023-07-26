@@ -1,9 +1,12 @@
 <script setup>
 import { computed, ref } from 'vue'
+import pinIcon from '@/assets/map-pin.svg'
 
+let output = ref([])
 let province = ref(''),
   municipality = ref('')
-let output = ref([])
+
+// runs when submit button was clicked
 function handleSubmit() {
   let url = `https://demo.myruntime.com/website/fulfillmentClustersService/api/getPhilClusterOptions/myruntimeWeb?parentOption=${province.value}&childOption=${municipality.value}`
   fetch(url)
@@ -12,34 +15,45 @@ function handleSubmit() {
       output.value = data.data
     })
 }
+
+//fetches options for provinces and municipalities
 let options = ref(null)
 const optionsUrl =
   'https://demo.myruntime.com/website/fulfillmentClustersService/api/getPhilClusters/myruntimeWeb'
+
 fetch(optionsUrl)
   .then((res) => res.json())
   .then((data) => {
     // eslint-disable-next-line no-unused-vars
     options.value = data.data
   })
+
+// options for province
 const provinces = computed(() => {
-  return options.value ? options.value.parentOptions : ['No provinces found']
+  return options.value ? options.value['parentOptions'] : ['No provinces found']
 })
 
+// options for municipality
 const municipalities = computed(() => {
-  return province.value ? options.value.childOptions[province.value] : ['No municipalities found']
+  return province.value
+    ? options.value['childOptions'][province.value]
+    : ['No municipalities found']
 })
 
+// resets form input values
 function handleReset() {
   province.value = ''
   municipality.value = ''
   output.value = []
 }
 
+// handles scrolling back top of the result
 const top = ref(null)
 function scrollToTop() {
   top.value.scrollIntoView()
 }
 
+// generates random color value from pallete
 const items = ['#27586B', '#6D92A0', '#457485', '#103E50', '#022735']
 function item() {
   return items[Math.floor(Math.random() * items.length)]
@@ -51,10 +65,14 @@ function item() {
       <div class="content">
         <h3 class="title is-4">Input</h3>
       </div>
+
       <form @submit.prevent="handleSubmit" @reset.prevent="handleReset">
         <div class="field">
           <label for="provinceInput" class="label">Province</label>
-          <div class="control">
+          <div class="control has-icons-left">
+            <span class="icon is-left is-small">
+              <img :src="pinIcon" alt="" />
+            </span>
             <div class="select">
               <select name="province" id="provinceInput" v-model="province">
                 <option value="" disabled selected>Select your province</option>
@@ -65,7 +83,10 @@ function item() {
         </div>
         <div class="field">
           <label for="municipalityInput" class="label">Municipality</label>
-          <div class="control">
+          <div class="control has-icons-left">
+            <span class="icon is-left is-small">
+              <img :src="pinIcon" alt="" />
+            </span>
             <div class="select">
               <select v-model="municipality" name="municipality" id="municipalityInput">
                 <option value="" disabled selected>Select your municipality</option>
