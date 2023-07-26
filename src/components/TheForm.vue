@@ -66,7 +66,7 @@ function item() {
         <h3 class="title is-4">Input</h3>
       </div>
 
-      <form @submit.prevent="handleSubmit" @reset.prevent="handleReset">
+      <form @submit.prevent="handleSubmit" @reset.prevent="handleReset" class="px-4">
         <div class="field">
           <label for="provinceInput" class="label">Province</label>
           <div class="control has-icons-left">
@@ -119,7 +119,7 @@ function item() {
       <div v-if="!output.length" class="content has-text-centered has-text-grey">
         <p><small>Select a province and a municipality</small></p>
       </div>
-      <div class="columns is-multiline">
+      <div class="columns is-multiline px-4">
         <div v-for="(barangay, index) of output" :key="index" class="column is-one-fifth">
           <p class="p-2 has-text-light" :style="{ background: item() }">{{ barangay }}</p>
         </div>
