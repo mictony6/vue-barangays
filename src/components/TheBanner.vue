@@ -1,5 +1,3 @@
-<script setup></script>
-
 <template>
   <section class="hero">
     <div class="hero-body">
@@ -8,8 +6,10 @@
   </section>
 </template>
 
+<script></script>
+
 <style scoped>
-section {
+.hero {
   background: #022735;
 }
 </style>

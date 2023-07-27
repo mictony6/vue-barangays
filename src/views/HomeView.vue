@@ -1,11 +1,17 @@
-<script setup>
-import TheForm from '@/components/TheForm.vue'
-import TheBanner from '@/components/TheBanner.vue'
-</script>
-
 <template>
   <main>
     <TheBanner />
-    <TheForm />
+    <MainForm />
   </main>
 </template>
+
+<script>
+import MainForm from '@/components/MainForm.vue'
+import TheBanner from '@/components/TheBanner.vue'
+export default {
+  components: {
+    TheBanner,
+    MainForm
+  }
+}
+</script>
