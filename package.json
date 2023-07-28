@@ -9,8 +9,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "format": "prettier --write src/",
     "css-build": "node-sass --omit-source-map-url sass/mystyles.scss src/assets/mystyles.css",
-    "css-watch": "npm run css-build -- --watch",
-    "start": "npm run css-watch"
+    "css-watch": "npm run css-build -- --watch"
   },
   "dependencies": {
     "vue": "^3.3.4",
