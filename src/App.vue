@@ -4,7 +4,7 @@
 
 <script>
 import './assets/main.css'
-import 'bulma/css/bulma.min.css'
+import '../css/mystyles.css'
 import { RouterView } from 'vue-router'
 
 export default {
